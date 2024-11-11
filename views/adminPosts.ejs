@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin - Manage Posts</title>
+</head>
+<body>
+  <h1>Manage Posts</h1>
+  <% posts.forEach(post => { %>
+    <div>
+      <h2><%= post.author %></h2>
+      <p><%= post.content %></p>
+      <p>Status: <%= post.approved ? "Approved" : "Not Approved" %></p>
+
+      <!-- Approve Button -->
+      <form action="/admin/posts/<%= post._id %>" method="POST" style="display: inline;">
+        <input type="hidden" name="approved" value="true">
+        <button type="submit">Approve</button>
+      </form>
+
+      <!-- Disapprove Button -->
+      <form action="/admin/posts/<%= post._id %>" method="POST" style="display: inline;">
+        <input type="hidden" name="approved" value="false">
+        <button type="submit">Disapprove</button>
+      </form>
+    </div>
+    <hr>
+  <% }) %>
+</body>
+</html>
